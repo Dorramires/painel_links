@@ -13,6 +13,10 @@ import { ZodError } from "zod";
 
 import { getServerAuthSession } from "@/server/auth";
 import { db } from "@/server/db";
+import { createTRPCReact } from '@trpc/react-query';
+import type { AppRouter } from '../api/root';
+
+export const trpc = createTRPCReact<AppRouter>();
 
 /**
  * 1. CONTEXT

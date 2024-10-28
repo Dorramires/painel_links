@@ -13,5 +13,5 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 export const db = globalForPrisma.prisma ?? createPrismaClient();
-
+export const prisma = new PrismaClient();
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = db;
