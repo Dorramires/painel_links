@@ -4,15 +4,16 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { prisma } from "../../db";
 import bcrypt from "bcryptjs";
-
+export const registerSchema = 
+  z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+  name: z.string().optional(),
+  })
 export const authRouter = createTRPCRouter({
   register: publicProcedure
     .input(
-      z.object({
-        email: z.string().email(),
-        password: z.string().min(6),
-        name: z.string().optional(),
-      })
+      registerSchema
     )
     .mutation(async ({ input }) => {
       const { email, password, name } = input;
